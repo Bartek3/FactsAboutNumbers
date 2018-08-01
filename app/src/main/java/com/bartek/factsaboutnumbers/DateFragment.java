@@ -37,13 +37,13 @@ public class DateFragment extends Fragment {
         month = rootView.findViewById(R.id.edittext2);
         textView = rootView.findViewById(R.id.text);
 
-        day.setOnKeyListener(new View.OnKeyListener() {
+        month.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     monthString = month.getText().toString();
                     dayString = day.getText().toString();
-                    if (monthString.length() == 0 || dayString.length() == 0) {
-                        Toast.makeText(getContext(), "Enter numbers!", Toast.LENGTH_SHORT).show();
+                    if (monthString.length() == 0 || dayString.length() == 0 || !dayConsent(day) || !monthConsent(month)) {
+                        Toast.makeText(getContext(), "Enter correct day and month!", Toast.LENGTH_SHORT).show();
                     } else {
                         if (!button.isClickable()) button.setClickable(true);
                         NumberAsyncTask task = new NumberAsyncTask();
@@ -60,8 +60,8 @@ public class DateFragment extends Fragment {
             public void onClick(View v) {
                 monthString = month.getText().toString();
                 dayString = day.getText().toString();
-                if (monthString.length() == 0 || dayString.length() == 0) {
-                    Toast.makeText(getContext(), "Enter numbers!", Toast.LENGTH_SHORT).show();
+                if (monthString.length() == 0 || dayString.length() == 0 || !dayConsent(day) || !monthConsent(month)) {
+                    Toast.makeText(getContext(), "Enter correct day and month!", Toast.LENGTH_SHORT).show();
                 } else {
                     NumberAsyncTask task = new NumberAsyncTask();
                     task.execute();
@@ -72,6 +72,13 @@ public class DateFragment extends Fragment {
         return rootView;
     }
 
+    private boolean dayConsent(EditText day){
+        return Integer.valueOf(day.getText().toString()) <= 31;
+    }
+
+    private boolean monthConsent(EditText month){
+        return Integer.valueOf(month.getText().toString()) <= 12;
+    }
 
     private class NumberAsyncTask extends AsyncTask<String,Void,String> {
 

@@ -37,8 +37,8 @@ public class YearFragment extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     number = editText.getText().toString();
-                    if (number.length() == 0) {
-                        Toast.makeText(getContext(), "Enter number!", Toast.LENGTH_SHORT).show();
+                    if (number.length() == 0 || !yearConsent(editText)) {
+                        Toast.makeText(getContext(), "Enter correct year!", Toast.LENGTH_SHORT).show();
                     } else {
                         if (!button.isClickable()) button.setClickable(true);
                         NumberAsyncTask task = new NumberAsyncTask();
@@ -54,8 +54,8 @@ public class YearFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 number = editText.getText().toString();
-                if (number.length() == 0) {
-                    Toast.makeText(getContext(), "Enter number!", Toast.LENGTH_SHORT).show();
+                if (number.length() == 0 || !yearConsent(editText)) {
+                    Toast.makeText(getContext(), "Enter correct year!", Toast.LENGTH_SHORT).show();
                 } else {
                     NumberAsyncTask task = new NumberAsyncTask();
                     task.execute();
@@ -66,6 +66,10 @@ public class YearFragment extends Fragment {
         return rootView;
     }
 
+    private boolean yearConsent(EditText year){
+        int yearInt = Integer.valueOf(year.getText().toString());
+        return (yearInt > 0 && yearInt < 2100);
+    }
 
     private class NumberAsyncTask extends AsyncTask<String,Void,String> {
 
