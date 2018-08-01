@@ -5,10 +5,64 @@
     android:layout_height="match_parent"
     tools:context=".DateFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_margin="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edittext1"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:hint="Day"
+                android:inputType="number"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/darker_gray" />
+
+            <EditText
+                android:id="@+id/edittext2"
+                android:layout_width="70dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="wrap_content"
+                android:hint="Month"
+                android:inputType="number"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/darker_gray" />
+
+            <Button
+                android:id="@+id/button"
+                android:clickable="false"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_height="40dp"
+                android:background="@color/colorAccent"
+                android:text="refresh"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="50dp"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
+
+    </LinearLayout>
 
 </FrameLayout>
