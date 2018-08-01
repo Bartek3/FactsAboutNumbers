@@ -1,11 +1,8 @@
 package com.bartek.factsaboutnumbers;
 
-import com.google.gson.Gson;
-
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -15,17 +12,27 @@ import java.net.URLConnection;
 
 abstract class ConnectAPI {
 
-    static String connectAPI(String userInput) throws IOException {
+    static String httpToString(String URL) throws IOException {
 
         //Nawiązanie połączenia ze stroną
-        URL url = new URL("http://numbersapi.com/" + userInput);
+        URL url = new URL(URL);
         URLConnection uc = url.openConnection();
 
         //Pobranie danych ze strony
         InputStream in = uc.getInputStream();
-        Reader reader = new InputStreamReader(in, "UTF-8");
 
-        return reader.toString();
+        return inputStreamToString(in);
+    }
+
+    private static String inputStreamToString(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream result = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = inputStream.read(buffer)) != -1) {
+            result.write(buffer, 0, length);
+        }
+
+        return result.toString("UTF-8");
     }
 
 }
