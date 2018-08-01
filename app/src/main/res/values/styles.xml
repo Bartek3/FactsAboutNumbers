@@ -9,7 +9,7 @@
     </style>
 
     <style name="AppTabLayout" parent="Widget.Design.TabLayout">
-        <item name="tabIndicatorColor">?attr/colorAccent</item>
+        <item name="tabIndicatorColor">?attr/colorPrimaryDark</item>
         <item name="tabIndicatorHeight">5dp</item>
         <item name="tabPaddingStart">5dp</item>
         <item name="tabPaddingEnd">5dp</item>

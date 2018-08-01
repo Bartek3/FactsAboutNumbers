@@ -6,11 +6,13 @@
     tools:context=".NumberFragment">
 
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
+            android:layout_margin="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -19,21 +21,20 @@
                 android:id="@+id/edittext"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="30dp"
                 android:hint="Number"
                 android:inputType="number"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:textColorHint="@android:color/darker_gray" />
 
             <Button
                 android:id="@+id/button"
-                android:layout_width="100dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="30dp"
+                android:clickable="false"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_height="40dp"
                 android:background="@color/colorAccent"
-                android:text="Get"
+                android:text="refresh"
+                android:layout_gravity="center_horizontal"
                 android:textColor="@android:color/white" />
 
         </LinearLayout>
@@ -44,10 +45,9 @@
             android:id="@+id/text"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginTop="30dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="50dp"
             android:gravity="center"
             android:text=""
             android:textColor="@android:color/white"

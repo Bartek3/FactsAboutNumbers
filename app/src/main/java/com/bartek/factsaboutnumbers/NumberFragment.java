@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,23 @@ public class NumberFragment extends Fragment {
         button = rootView.findViewById(R.id.button);
         editText = rootView.findViewById(R.id.edittext);
         textView = rootView.findViewById(R.id.text);
+
+        editText.setOnKeyListener(new View.OnKeyListener() {
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                        number = editText.getText().toString();
+                        if (number.length() == 0) {
+                            Toast.makeText(getContext(), "Enter number!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            if (!button.isClickable()) button.setClickable(true);
+                            NumberAsyncTask task = new NumberAsyncTask();
+                            task.execute();
+                        }
+                        return true;
+                    }
+                    return false;
+                }
+        });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
