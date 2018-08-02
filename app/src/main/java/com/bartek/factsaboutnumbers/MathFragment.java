@@ -78,6 +78,11 @@ public class MathFragment extends Fragment {
             try {
                 result = ConnectAPI.httpToString(url + number + "/math");
             } catch (IOException e) {
+                getActivity().runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast.makeText(getContext(), "Problem with internet connection, try again!", Toast.LENGTH_LONG).show();
+                    }
+                });
                 e.printStackTrace();
             }
             return result;
